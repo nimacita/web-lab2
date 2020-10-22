@@ -1,0 +1,90 @@
+body{
+    background: #292a2c;
+    //background-image: url(backg.png);
+    color: #f6f2f2;
+}
+
+a{
+    color: #f6f2f2; 
+    text-decoration: none; 
+}
+
+a:hover {
+    color: #eae835;  
+}
+
+.image-flex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.parentc{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: auto;
+    //border: 2px solid white;
+}
+
+.blockc{
+    width: 100%;
+    height: 280px;
+    position: absolute;
+    top: 36%;
+    margin: -125px 0 0 0;
+    //border: 2px solid #d61616;
+}
+
+.blockc2{
+    width: 100%;
+    height: 280px;
+    position: absolute;
+    top: 68%;
+    margin: -125px 0 0 0;
+    //border: 2px solid #1c78e3;
+}
+
+/*.stadt{
+   
+   border: 2px solid white; 
+}*/
+
+
+.tclass{
+    width: 300px;
+}
+
+.regcont{
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    //border: 2px solid #1c78e3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.navbar{
+    //border: 1px solid #1c78e3;
+}
+
+.parent-card{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.card-color{
+    border: 0px;
+    background: transparent;
+}
