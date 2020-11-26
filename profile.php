@@ -6,6 +6,13 @@ if(isset($data['do_exit'])){
     header('Location: /');
 }
 
+if(isset($_POST['stat'])) {
+        session_start();
+        //$_SESSION['stat_mat'] = $_POST['stat'];
+        $_SESSION['stat_mat'] = strtr($_POST['stat'], array(" бля"=>" ***", "еба"=>"***", "еби"=>"***", "хуй"=>"***", "пизд"=>"****", "хуе"=>"***", "хуя"=>"***", "ебе"=>"***", " сук"=>" ***"));
+}
+
+
 
 ?>
 
@@ -39,7 +46,7 @@ if(isset($data['do_exit'])){
                <li class="nav-item active">
                   <a class="nav-link" href="profile.php"><h3>Профиль</h3></a>
             </ul>
-         </div>
+         </div> 
       </div>
    </nav>
     </div>
@@ -50,6 +57,16 @@ if(isset($data['do_exit'])){
         <h4><p>Email адресс: <?php echo $_SESSION['logged_user']->email; ?></p></h4>
         <h4><p>Имя: <?php echo $_SESSION['logged_user']->name; ?></p></h4>
         <h4><p>Любимый вид спорта: <?php echo $_SESSION['logged_user']->sport; ?></p></h4>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1"><h4>Ваш статус:</h4></label>
+               <form action="/profile.php" method="POST">
+                
+                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name='stat' 
+                 placeholder="Я люблю футбол, но вообще не знаю как играть"><?php  echo $_SESSION['stat_mat']; ?></textarea>
+                 
+                 <button type="submit" name = "do_stat" class="btn btn-alert">Сохранить</button>
+            </form>
+        </div>
         <form action="/profile.php" method="POST">
         <button type="submit" name = "do_exit" class="btn btn-alert">Выход</button>
        </form>
