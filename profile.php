@@ -73,6 +73,16 @@ if(isset($_POST['do_stat'])) {
                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name='stat' 
                  placeholder="Я люблю футбол, но вообще не знаю как играть"></textarea>
                  
+                 <script>
+                   var states = document.getElementById("exampleFormControlTextarea1");
+                     
+                     if(!states.value){
+                        return false;
+                        }
+                     
+                     return true;
+                   </script>
+                 
                  <button type="submit" name = "do_stat" class="btn btn-alert">Сохранить</button>
             </form>
         </div>
