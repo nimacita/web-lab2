@@ -6,12 +6,20 @@ if(isset($data['do_exit'])){
     header('Location: /');
 }
 
-if(isset($_POST['stat'])) {
+$stat = R::dispense('stat');
+
+
+if(isset($_POST['do_stat'])) {
         session_start();
         //$_SESSION['stat_mat'] = $_POST['stat'];
         $_SESSION['stat_mat'] = strtr($_POST['stat'], array(" бля"=>" ***", "еба"=>"***", "еби"=>"***", "хуй"=>"***", "пизд"=>"****", "хуе"=>"***", "хуя"=>"***", "ебе"=>"***", " сук"=>" ***"));
+    
+        $stat->status=$_SESSION['stat_mat'];
+        $stat->name=$_SESSION['logged_user'];
+        $stat->dates=date("l dS F Y");
+        $stat->times=date("h:i A");
+        R::store($stat);
 }
-
 
 
 ?>
@@ -57,19 +65,45 @@ if(isset($_POST['stat'])) {
         <h4><p>Email адресс: <?php echo $_SESSION['logged_user']->email; ?></p></h4>
         <h4><p>Имя: <?php echo $_SESSION['logged_user']->name; ?></p></h4>
         <h4><p>Любимый вид спорта: <?php echo $_SESSION['logged_user']->sport; ?></p></h4>
+        
         <div class="form-group">
             <label for="exampleFormControlTextarea1"><h4>Ваш статус:</h4></label>
                <form action="/profile.php" method="POST">
                 
                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name='stat' 
-                 placeholder="Я люблю футбол, но вообще не знаю как играть"><?php  echo $_SESSION['stat_mat']; ?></textarea>
+                 placeholder="Я люблю футбол, но вообще не знаю как играть"></textarea>
                  
                  <button type="submit" name = "do_stat" class="btn btn-alert">Сохранить</button>
             </form>
         </div>
+        
+        <h4>Статусы:<br></h4>
+        <div class="stat ">
+         <h4><?php
+        $stats = R::findCollection('stat',"ORDER BY 'id' DESC");
+       while($stat = $stats->next()){
+           echo 'Status: ' . $stat->times;
+           ?>
+
+           <form action="del.php" method="POST">
+               <input type="hidden" name="id" value="<?php echo $stat->id ?>">
+               <input type="submit" value="Удалить">
+            </form>
+            <form action="red.php" method="POST">
+               <textarea name="red"><?php echo  $stat->status?></textarea>
+               <input type="hidden" name="id" value="<?php echo $stat->id ?>">
+               <input type="submit" value="Ред">
+            </form>
+            
+           <?php
+       }
+        ?></h4>
+        </div>
+        
         <form action="/profile.php" method="POST">
         <button type="submit" name = "do_exit" class="btn btn-alert">Выход</button>
        </form>
+       
    </div>
    
     

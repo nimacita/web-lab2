@@ -32,6 +32,7 @@ require "db.php";
          <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
              
+             
               <?php if(isset($_SESSION['logged_user'])):?> <!-- проверка авторизован ли пользователь -->
               <li class="nav-item"><!-- если да -->
                   <a class="nav-link" href="profile.php"><h5><?php echo $_SESSION['logged_user']->login; ?></h5></a>
@@ -46,6 +47,7 @@ require "db.php";
                     <a class="nav-link" href="login.php"><h5>Вход</h5></a>
                 </li>
                <?php endif; ?>
+               
             </ul>
          </div>
       </div>
