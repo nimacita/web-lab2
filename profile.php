@@ -98,6 +98,7 @@ if(isset($_POST['do_stat'])) {
            <form action="del.php" method="POST">
                <input type="hidden" name="id" value="<?php echo $stat->id ?>">
                <input type="submit" value="Удалить">
+               
             </form>
             <form action="red.php" method="POST">
                <textarea name="red"><?php echo  $stat->status?></textarea>
