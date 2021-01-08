@@ -5,7 +5,7 @@ $data = $_POST;
 if(isset($data['do_signup'])){
     //регестрируем 
     
-    $errors = array();
+    $errors = array();//заводим массив для ошибок
     if($data['login']==''){
        $errors[]='Вы не ввели логин!'; 
     }
@@ -22,7 +22,7 @@ if(isset($data['do_signup'])){
        $errors[]='Пользоватеь с таким email уже существует'; 
     }
     
-    if(empty($errors)){
+    if(empty($errors)){//если нет ошибок, то регистрируем, записываем пользователя в таблицу
      
         $user = R::dispense('users');
         $user->login = $data['login'];
@@ -34,8 +34,8 @@ if(isset($data['do_signup'])){
         echo '<div class="alert alert-primary" role="alert">
               вы успешно зарегистрировались
             </div>';
-    }else{
-        //echo '<div class="alert alert-primary" role="alert>'.array_shift($errors).'</div>';
+    }else{//если есть ошибки, то выводим
+        echo '<div class="alert alert-primary" role="alert">'.array_shift($errors).'</div>';
     }
 }
 
@@ -56,7 +56,7 @@ if(isset($data['do_signup'])){
    
    <!-- нав менюшка -->
     <div class="container-fluid"> 
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark ">
       <div class="container">
          <a class="navbar-brand" href="index.php">
          <img src="images/logo.png" alt="FASTER" height="50">
@@ -98,6 +98,7 @@ if(isset($data['do_signup'])){
           
           <button type="submit" name = "do_signup"class="btn btn-primary">Регистрация</button>
           
+        
         </form>
     </div>
     

@@ -115,6 +115,26 @@ if(isset($_POST['do_stat'])) {
         <button type="submit" name = "do_exit" class="btn btn-alert">Выход</button>
        </form>
        
+        <br><h4>Поиск по времени:</h4>
+        <form action="/profile.php" method="POST">
+            <textarea name="searchtime" placeholder="время публикации статуса"></textarea>
+            <br>
+            <input type="submit" value="Найти">
+        </form>
+       <h4><?php
+           if(isset($_POST['searchtime'])){
+            $stats = R::findCollection('stat',"ORDER BY 'times' DESC");
+               while($stat = $stats->next()){
+                   if($_POST['searchtime']== $stat->times){
+                    echo 'статус: ' . $stat->status;
+                  ?> <br> <?php
+                }
+               }
+            }
+
+           ?>
+       </h4>
+       
    </div>
    
     
